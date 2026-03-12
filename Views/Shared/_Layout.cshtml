@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>@ViewData["Title"] - ShadowFile</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
+    <link rel="stylesheet" href="~/ShadowFile.styles.css" asp-append-version="true"/>
+    <link rel="stylesheet" href="~/lib/FontAwesome/all.min.css"/>
+    
+    <style>
+    body {
+        margin: 0;
+        background: url('/images/Detective.png') no-repeat center center fixed;
+        background-size: cover;
+        color: #e0e0e0;
+        font-family: 'Segoe UI', sans-serif;
+        
+    }
+
+    body::before {
+        content: "";
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        z-index: -1;
+    }
+
+    .login-card {
+        background: #1a1a24;
+        padding: 30px;
+        width: 350px;
+        margin: 120px auto;
+        border-radius: 8px;
+        box-shadow: 0 0 20px rgba(0,0,0,0.8);
+    }
+
+    input, select {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        background: #0f0f14;
+        border: 1px solid #333;
+        color: white;
+    }
+
+    button {
+        width: 100%;
+        padding: 10px;
+        background: #8b0000;
+        border: none;
+        color: white;
+        cursor: pointer;
+    }
+
+    .password-wrapper {
+        position: relative;
+    }
+
+    .password-wrapper i {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+    }
+</style>
+</head>
+<body>
+<main role="main" class="pb-3">
+    @RenderBody()
+</main>
+
+@await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

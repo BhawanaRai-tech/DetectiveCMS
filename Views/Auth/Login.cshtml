@@ -1,0 +1,209 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Shadow Files | Secure Access</title>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet" />
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', sans-serif;
+            height: 100vh;
+            background: url('/images/Detective.png') no-repeat center center/cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Slight overlay to keep BG visible but readable */
+        body::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.45);
+            z-index: 0;
+        }
+
+        .login-card {
+            position: relative;
+            z-index: 1;
+            width: 400px;
+            padding: 35px;
+            border-radius: 12px;
+            background: rgba(0, 0, 0, 0.85);
+            box-shadow: 0 0 25px rgba(255, 0, 0, 0.3);
+            color: white;
+        }
+
+        .login-card h2 {
+            text-align: center;
+            margin-bottom: 5px;
+            letter-spacing: 2px;
+            color: #ff2e4d;
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 13px;
+            margin-bottom: 25px;
+            color: #ccc;
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 18px;
+        }
+
+        .input-group input,
+        .input-group select {
+            width: 100%;
+            height: 42px;
+            padding: 0 40px 0 40px;
+            border-radius: 6px;
+            border: none;
+            outline: none;
+            background: #1c1c1c;
+            color: white;
+            box-sizing: border-box;
+        }
+
+        /* Left icons */
+        .input-group .left-icon {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #aaa;
+        }
+
+        /* Right eye icon */
+        .toggle-password {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #aaa;
+        }
+
+        .btn-login {
+            width: 100%;
+            height: 42px;
+            border: none;
+            border-radius: 6px;
+            background: #ff2e4d;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .btn-login:hover {
+            background: #ff4d6a;
+        }
+
+        .links {
+            text-align: center;
+            margin-top: 18px;
+            font-size: 13px;
+        }
+
+        .links a {
+            color: #ccc;
+            text-decoration: none;
+            margin: 0 8px;
+        }
+
+        .links a:hover {
+            color: #ff2e4d;
+        }
+
+        .footer-note {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 12px;
+            color: #ffcc00;
+        }
+        /* Remove default browser password eye */
+
+        input[type="password"]::-ms-reveal,
+        input[type="password"]::-ms-clear {
+            display: none;
+        }
+        
+    </style>
+</head>
+<body>
+
+<div class="login-card">
+
+    <h2>SHADOW FILES</h2>
+    <div class="subtitle">Restricted Investigation Portal</div>
+
+    <form method="post" asp-controller="Auth" asp-action="Login">
+
+        <div class="input-group">
+            <i class="fa fa-user left-icon"></i>
+            <input type="text" name="Username" placeholder="Agent Name" required />
+        </div>
+
+        <div class="input-group">
+            <i class="fa fa-lock left-icon"></i>
+            <input id="passwordField" type="password" name="Password" placeholder="Password" required />
+            <i class="fa fa-eye toggle-password" onclick="togglePassword()"></i>
+        </div>
+
+        <div class="input-group">
+            <i class="fa fa-key left-icon"></i>
+            <input type="text" name="AgentCode" placeholder="Agent Code" required />
+        </div>
+
+        <div class="input-group">
+            <i class="fa fa-user-shield left-icon"></i>
+            <select name="RoleId" required>
+                <option value="">Select Role</option>
+                <option value="1">Admin</option>
+                <option value="2">Detective</option>
+                <option value="3">Supervisor</option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn-login">ENTER SYSTEM</button>
+        <div class="links">
+            <a asp-action="SignUp">Sign Up</a>  |
+            <a asp-action="ForgotPassword">Forgot Password?</a>
+        </div>
+
+        <div class="footer-note">
+            ⚠ All access attempts are logged.
+        </div>
+
+    </form>
+
+</div>
+
+<script>
+    function togglePassword() {
+        const password = document.getElementById("passwordField");
+        const icon = document.querySelector(".toggle-password");
+
+        if (password.type === "password") {
+            password.type = "text";
+            icon.classList.remove("fa-eye");
+            icon.classList.add("fa-eye-slash");
+        } else {
+            password.type = "password";
+            icon.classList.remove("fa-eye-slash");
+            icon.classList.add("fa-eye");
+        }
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,175 @@
+﻿@model ShadowFile.DTOs.CreateUserDto
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Add Agent | Shadow Files</title>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet"/>
+
+<style>
+
+body{
+margin:0;
+padding:0;
+font-family:'Segoe UI',sans-serif;
+height:100vh;
+background:url('/images/Detective.png') no-repeat center center/cover;
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+/* overlay */
+body::before{
+content:"";
+position:absolute;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.45);
+z-index:0;
+}
+
+.form-card{
+position:relative;
+z-index:1;
+width:400px;
+padding:35px;
+border-radius:12px;
+background:rgba(0,0,0,0.85);
+box-shadow:0 0 25px rgba(255,0,0,0.3);
+color:white;
+}
+
+.form-card h2{
+text-align:center;
+margin-bottom:5px;
+letter-spacing:2px;
+color:#ff2e4d;
+}
+
+.subtitle{
+text-align:center;
+font-size:13px;
+margin-bottom:25px;
+color:#ccc;
+}
+
+.input-group{
+position:relative;
+margin-bottom:18px;
+}
+
+.input-group input,
+.input-group select{
+width:100%;
+height:42px;
+padding:0 40px;
+border-radius:6px;
+border:none;
+outline:none;
+background:#1c1c1c;
+color:white;
+box-sizing:border-box;
+}
+
+.left-icon{
+position:absolute;
+left:12px;
+top:50%;
+transform:translateY(-50%);
+color:#aaa;
+}
+
+.btn-create{
+width:100%;
+height:42px;
+border:none;
+border-radius:6px;
+background:#ff2e4d;
+color:white;
+font-weight:bold;
+cursor:pointer;
+}
+
+.btn-create:hover{
+background:#ff4d6a;
+}
+
+.exit{
+margin-top:18px;
+text-align:center;
+}
+
+.exit a{
+color:#ccc;
+text-decoration:none;
+}
+
+.exit a:hover{
+color:#ff2e4d;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="form-card">
+
+<h2>ADD AGENT</h2>
+<div class="subtitle">Register New Investigation Member</div>
+
+<form method="post">
+
+<div class="input-group">
+<i class="fa fa-user left-icon"></i>
+<input type="text" name="Username" placeholder="Agent Name" required>
+</div>
+
+<div class="input-group">
+<i class="fa fa-lock left-icon"></i>
+<input type="password" name="Password" placeholder="Password" required>
+</div>
+
+<div class="input-group">
+<i class="fa fa-key left-icon"></i>
+<input type="text" name="AgentCode" placeholder="Agent Code" required>
+</div>
+
+<div class="input-group">
+<i class="fa fa-user-shield left-icon"></i>
+
+<select name="RoleId" required>
+
+<option value="">Select Role</option>
+<option value="1">Admin</option>
+<option value="2">Detective</option>
+<option value="3">Supervisor</option>
+
+</select>
+
+</div>
+
+<button type="submit" class="btn-create">
+<i class="fa fa-user-plus"></i> Create Agent
+</button>
+
+</form>
+
+<div class="exit">
+<a href="/Admin/ManageAgents">
+<i class="fa fa-arrow-left"></i> Exit
+</a>
+</div>
+
+</div>
+
+</body>
+</html>

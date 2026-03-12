@@ -1,0 +1,17 @@
+﻿using BCrypt.Net;
+using ShadowFile.Interfaces;
+
+namespace ShadowFile.Providers;
+
+public class PasswordProvider : IPasswordProvider
+{
+    public string HashPassword(string password)
+    {
+        return BCrypt.Net.BCrypt.HashPassword(password);
+    }
+
+    public bool VerifyPassword(string password, string hash)
+    {
+        return BCrypt.Net.BCrypt.Verify(password, hash);
+    }
+}

@@ -1,0 +1,126 @@
+﻿@model ShadowFile.Models.User
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Agent Details | Shadow Files</title>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet"/>
+
+    <style>
+
+        body{
+            margin:0;
+            padding:0;
+            font-family:'Segoe UI',sans-serif;
+            height:100vh;
+            background:url('/images/Detective.png') no-repeat center center/cover;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+        }
+
+.card{
+width:400px;
+background:#161616;
+padding:30px;
+border-radius:10px;
+box-shadow:0 0 20px rgba(255,0,0,0.2);
+color:white;
+}
+
+.card h2{
+text-align:center;
+color:#ff2e4d;
+margin-bottom:25px;
+}
+
+.detail{
+margin-bottom:12px;
+font-size:15px;
+color:#ccc;
+}
+
+.label{
+color:#ff2e4d;
+font-weight:bold;
+}
+
+.actions{
+margin-top:20px;
+display:flex;
+justify-content:space-between;
+}
+
+.btn{
+padding:8px 14px;
+border-radius:6px;
+text-decoration:none;
+font-size:13px;
+}
+
+.back{
+background:#444;
+color:white;
+}
+
+.edit{
+background:#ff2e4d;
+color:white;
+}
+
+.back:hover{
+background:#555;
+}
+
+.edit:hover{
+background:#ff4d6a;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="card">
+
+    <h2>Agent Details</h2>
+
+    <div class="detail">
+        <span class="label">Username:</span> @Model.Username
+    </div>
+
+    <div class="detail">
+        <span class="label">Agent Code:</span> @Model.AgentCode
+    </div>
+
+    <div class="detail">
+        <span class="label">Role:</span> @(Model.Role != null ? Model.Role.RoleName : "No Role Assigned")
+    </div>
+
+    <div class="detail">
+        <span class="label">Status:</span> @(Model.IsActive ? "Active" : "Inactive")
+    </div>
+
+    <div class="actions">
+
+        <a href="/Admin/ManageAgents" class="btn back">
+            <i class="fa fa-arrow-left"></i> Back
+        </a>
+
+        <a href="/Admin/EditAgent/@Model.Id" class="btn edit">
+            <i class="fa fa-edit"></i> Edit
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,260 @@
+﻿@{
+Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Admin Command Center | Shadow Files</title>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet" />
+
+<style>
+
+body{
+margin:0;
+font-family:'Segoe UI',sans-serif;
+    background:url('/images/Detective.png') no-repeat center center/cover;
+color:white;
+}
+
+/* SIDEBAR */
+
+.sidebar{
+width:250px;
+height:100vh;
+position:fixed;
+background:#111;
+display:flex;
+flex-direction:column;
+justify-content:space-between;
+box-shadow:2px 0 10px rgba(255,0,0,0.3);
+}
+
+.sidebar-top{
+padding-top:20px;
+}
+
+.sidebar h2{
+text-align:center;
+color:#ff2e4d;
+margin-bottom:30px;
+}
+
+.sidebar a{
+display:block;
+padding:12px 20px;
+color:#ccc;
+text-decoration:none;
+font-size:14px;
+}
+
+.sidebar a:hover{
+background:#1c1c1c;
+color:#ff2e4d;
+}
+
+/* Logout bottom */
+
+.logout{
+padding:20px;
+}
+
+.logout a{
+background:#ff2e4d;
+display:block;
+text-align:center;
+padding:10px;
+border-radius:6px;
+color:white;
+}
+
+.logout a:hover{
+background:#ff4d6a;
+}
+
+/* MAIN */
+
+.main{
+margin-left:250px;
+padding:30px;
+}
+
+/* TOP BAR */
+
+.top-bar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:30px;
+}
+
+.profile-section{
+display:flex;
+align-items:center;
+gap:20px;
+}
+
+.profile{
+cursor:pointer;
+display:flex;
+align-items:center;
+gap:8px;
+color:#ff2e4d;
+}
+
+.profile i{
+font-size:18px;
+}
+
+.clock{
+font-size:14px;
+color:#bbb;
+}
+
+/* CARDS */
+
+.card-container{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+}
+
+.card{
+background:#1a1a1a;
+padding:20px;
+border-radius:10px;
+box-shadow:0 0 15px rgba(255,0,0,0.2);
+}
+
+.card h3{
+margin:0;
+color:#ff2e4d;
+}
+
+.card p{
+font-size:13px;
+color:#bbb;
+}
+
+.count{
+font-size:28px;
+margin-top:10px;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+
+<div class="sidebar">
+
+<div class="sidebar-top">
+
+<h2>ADMIN</h2>
+
+<a href="/Admin/ManageAgents">
+    <i class="fa fa-users"></i> Manage Agents
+</a>
+<a href="#"><i class="fa fa-folder-open"></i> Manage Cases</a>
+<a href="#"><i class="fa fa-user-shield"></i> Manage Roles</a>
+<a href="#"><i class="fa fa-tasks"></i> Assign Cases</a>
+<a href="#"><i class="fa fa-file-alt"></i> View Reports</a>
+<a href="#"><i class="fa fa-exclamation-triangle"></i> Access Logs</a>
+
+</div>
+
+<div class="logout">
+<a href="/Auth/Logout"><i class="fa fa-sign-out-alt"></i> Logout</a>
+</div>
+
+</div>
+
+<!-- MAIN -->
+
+<div class="main">
+
+    <div class="top-bar">
+        
+        <h1 style="color:Red;">Command Center</h1>
+
+        <div class="profile-section">
+
+            <div class="clock" id="clock" style="color:Red;"></div>
+
+            <div class="profile" onclick="openProfile()">
+                <i class="fa fa-user-circle"></i>
+                <span>
+                    @{
+                        object username = null;
+                    }
+                    @username</span>
+            </div>
+
+        </div>
+
+    </div>
+
+<div class="card-container">
+
+<div class="card">
+<h3>Total Agents</h3>
+<p>Active field operatives in system</p>
+<div class="count">@ViewBag.TotalAgents  0</div>
+</div>
+
+<div class="card">
+<h3>Active Cases</h3>
+<p>Ongoing investigations</p>
+<div class="count">@ViewBag.ActiveCases  0</div>
+</div>
+
+<div class="card">
+<h3>Closed Cases</h3>
+<p>Successfully completed investigations</p>
+<div class="count">@ViewBag.ClosedCases  0</div>
+</div>
+
+<div class="card">
+<h3>Security Alerts</h3>
+<p>Suspicious login attempts</p>
+<div class="count">@ViewBag.SecurityAlerts  0</div>
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+/* REALTIME CLOCK */
+
+function updateClock(){
+
+const now = new Date();
+
+const date = now.toLocaleDateString();
+const time = now.toLocaleTimeString();
+
+document.getElementById("clock").innerText =
+date + " | " + time;
+
+}
+
+setInterval(updateClock,1000);
+updateClock();
+
+/* PROFILE CLICK */
+
+function openProfile(){
+
+window.location.href="/Account/Profile";
+
+}
+
+</script>
+
+</body>
+</html>
